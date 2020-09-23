@@ -20,7 +20,7 @@ morse_code_dic = {
             '0': '-----', ', ': '--..--', '.': '.-.-.-',
             '?': '..--..'
     }
-def morse_code_converter(s):
+def english_to_morsecode(s):
     morse_code = ""
     for x in s:
         if x != " ":
@@ -28,6 +28,12 @@ def morse_code_converter(s):
         else:
             morse_code += " "
     return morse_code
+
+def morsecode_to_english(s):
+
+
+
+
 
 
 if __name__ == '__main__':
