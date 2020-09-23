@@ -58,12 +58,18 @@ def morsecode_to_english(message):
                 # adding space to separate words
                 decipher += ' '
             else:
-                #                 # accessing the keys using their values (reverse of encryption)
+                # accessing the keys using their values (reverse of encryption)
+                # store the list of all keys in morse code dictionary
                 key_list = list(morse_code_dic.keys())
-                value_list = list(morse_code_dic.values())
-                index = value_list.index(citext)
 
+                # store the list of all values in morse code dictionary
+                value_list = list(morse_code_dic.values())
+
+                # get the index of citext in the value list to get corresponding letter in key list
+                index = value_list.index(citext)
                 decipher += key_list[index]
+
+                #
                 citext = ''
 
     return decipher
