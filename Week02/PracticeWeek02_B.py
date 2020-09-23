@@ -42,13 +42,16 @@ def morsecode_to_english(message):
     message += ' '
     decipher = ''
     citext = ''
-    for letter in message:
+
+    # for each single character in the code
+    # add it to a complete code and convert to an English letter
+    for code in message:
         # checks for space
         if (letter != ' '):
             # counter to keep track of space
             i = 0
             # storing morse code of a single character
-            citext += letter
+            citext += code
         # in case of space
         else:
             # if i = 1 that indicates a new character
