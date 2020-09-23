@@ -78,7 +78,21 @@ def morsecode_to_english(message):
     return decipher
 
 
+def main():
 
+  s = input("Enter a string: ")
+  ms = english_to_morsecode(s)
+
+  print(ms)
+
+
+  en = morsecode_to_english(ms)
+  print(en)
+
+
+
+
+main()
 
 
 
