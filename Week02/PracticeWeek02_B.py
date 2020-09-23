@@ -46,8 +46,8 @@ def morsecode_to_english(message):
     # for each single character in the code
     # add it to a complete code and convert to an English letter
     for code in message:
-        # checks for space
-        if (letter != ' '):
+        # check for space
+        if (code != ' '):
             # counter to keep track of space
             i = 0
             # storing morse code of a single character
