@@ -1,9 +1,9 @@
+from typing import List
+
+
 # Problem 1
 # A program to get the initials
 # of a proper name
-from setuptools.command.test import test
-
-
 def get_initials(s):
     sep_part = s.split(' ')
     for x in sep_part:
@@ -27,8 +27,6 @@ months = [
     'November',
     'December'
 ]
-
-
 # A program that prints a date
 # in a specified form
 def date_printer():
@@ -72,9 +70,17 @@ def telephone_number_translate():
     print(translated_phone)
 
 #Problem 4
-#
+# Function to capitalize
+# the first word of each sentence
 def sentence_capitalizeer():
-    return
+    initial_sentence = input("input a sentence (ex: hello. i am X. nice to meet you): ")
+    s = initial_sentence.split('. ')
+    s2: List[str] = []
+    for sentence in s:
+        s2.append(sentence[0].capitalize() + sentence[1:])
+
+    s = '. '.join(s2)
+    print(s)
 
 
 #Problem 5
@@ -99,12 +105,11 @@ def consonant_count():
     print(count)
 
 #Problem 6
-#Incompleted
-# Function to find the most frequent character in a string
-#
+# Function to find
+# the most frequent character in a string
 def most_frequent_char():
     string = input("Enter a string: ")
-
+    # Declare a default dictionary
     dictionary = {}
 
     for character in list(string):
@@ -113,24 +118,57 @@ def most_frequent_char():
         else:
             dictionary[character] = 1
 
-    results = []
+    key_list = list(dictionary.keys())
+    value_list = list(dictionary.values())
 
-    for key, value in dictionary.items():
-        results.append((value, key))
+    max = 0
+    for x in value_list:
+        if x > max:
+            max = x
+    index = value_list.index(max)
+    print("Most frequent character is", key_list[index], ", which occurred", value_list[index], "times")
+
+#Problem 7
+# Function to separate a sentence with word running together
+def word_separator():
+    string = input('Enter a string (ex: StopAndSmellThis)')
+    k = 0
+    rs = ''
+    for each in string:
+        #  Add ' ' before a capitalized character
+        if each.isupper() and k > 0:
+
+            rs += " " + each
+        else:
+            rs += each
+        k += 1
+    print(rs)
 
 
 
-    for value, key in reversed(sorted(results)):
-        print("Character", key, "occurred", value, "times")
 
-
+#Problem 8
+# Function to convert each word
+# in a sentence into "Pig_latin"
+def pig_latin():
+    s = input("Enter an English sentence: ")
+    s_sep = s.split(' ')
+    new_s = []
+    #for each word
+    #replace the first character with '' and add it to the end
+    #then add 'ay'
+    for x in s_sep:
+        temp_char = x[0]
+        new_s.append(x.replace(x[0],'') + temp_char + 'ay')
+    new_s = ' '.join(new_s)
+    print(new_s)
 
 
 
 
 #main procedure
 def main():
-   most_frequent_char()
+   word_separator()
 
 
 
