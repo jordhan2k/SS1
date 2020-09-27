@@ -25,7 +25,7 @@ def english_to_morsecode(s):
     #Declare an empty string to store the converted morse code
     morse_code = ""
     # for each letter in given sentence
-    #    convert it to correspoding morse code
+    #    convert it to corresponding morse code
     for x in s:
 
         if x != " ":
