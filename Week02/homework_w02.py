@@ -7,7 +7,6 @@ from typing import List
 def get_initials():
     s = input('Enter your name: ')
     sep_part = s.split(' ')
-
     for x in sep_part:
         print("{}.".format(x[0].capitalize()), end='')
         # end=' ' print on the same line
@@ -37,7 +36,7 @@ def date_printer():
     # seperate the date by "/"
     date_sep = date.split("/")
     # print the input date in the form March 12, 2020
-    print("{0} {1}, {2}".format(months[int(date_sep[1]) - 1], int(date_sep[0]), date_sep[2]))
+    print(">> {0} {1}, {2}".format(months[int(date_sep[1]) - 1], int(date_sep[0]), date_sep[2]))
 
 
 # Problem 3
@@ -69,20 +68,20 @@ def telephone_number_translate():
         else:
             translated_phone += char
 
-    print('Translated phone number: ', translated_phone)
+    print('>> Translated phone number: ', translated_phone)
 
 #Problem 4
 # Function to capitalize
 # the first word of each sentence
 def sentence_capitalizer():
-    initial_sentence = input("input a sentence (ex: hello. i am X. nice to meet you): ")
+    initial_sentence = input("Input a sentence (ex: hello. i am X. nice to meet you): ")
     s = initial_sentence.split('. ')
     s2: List[str] = []
     for sentence in s:
         s2.append(sentence[0].capitalize() + sentence[1:])
 
     s = '. '.join(s2)
-    print(s)
+    print('>> After capitalizing: ', s)
 
 
 #Problem 5
@@ -95,7 +94,7 @@ def vowel_count():
     for char in string:
         if char in vowel:
             count += 1
-    print(count)
+    print(">> There are {} vowels".format(count))
 # Function to count consonants
 # in a string
 def consonant_count():
@@ -104,7 +103,7 @@ def consonant_count():
     for char in string:
         if char not in vowel:
             count += 1
-    print(count)
+    print(">> There are {} consonants".format(count))
 
 #Problem 6
 # Function to find
@@ -128,7 +127,7 @@ def most_frequent_char():
         if x > max:
             max = x
     index = value_list.index(max)
-    print("Most frequent character is", key_list[index], ", which occurred", value_list[index], "times")
+    print(">> The most frequent character is", key_list[index], ", which occurred", value_list[index], "times")
 
 #Problem 7
 # Function to separate a sentence with word running together
@@ -139,12 +138,11 @@ def word_separator():
     for each in string:
         #  Add ' ' before a capitalized character
         if each.isupper() and k > 0:
-
             rs += " " + each
         else:
             rs += each
         k += 1
-    print(rs)
+    print(">> After separating: ", rs)
 
 
 
@@ -163,7 +161,7 @@ def pig_latin():
         temp_char = x[0]
         new_s.append(x.replace(x[0],'') + temp_char + 'ay')
     new_s = ' '.join(new_s)
-    print(new_s)
+    print('>> The pig latin form: ', new_s)
 
 
 
