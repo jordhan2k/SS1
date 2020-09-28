@@ -4,12 +4,14 @@ from typing import List
 # Problem 1
 # A program to get the initials
 # of a proper name
-def get_initials(s):
+def get_initials():
+    s = input('Enter your name: ')
     sep_part = s.split(' ')
+
     for x in sep_part:
         print("{}.".format(x[0].capitalize()), end='')
         # end=' ' print on the same line
-
+    print()
 
 # Problem 2
 # a list of months
@@ -67,12 +69,12 @@ def telephone_number_translate():
         else:
             translated_phone += char
 
-    print(translated_phone)
+    print('Translated phone number: ', translated_phone)
 
 #Problem 4
 # Function to capitalize
 # the first word of each sentence
-def sentence_capitalizeer():
+def sentence_capitalizer():
     initial_sentence = input("input a sentence (ex: hello. i am X. nice to meet you): ")
     s = initial_sentence.split('. ')
     s2: List[str] = []
@@ -168,7 +170,15 @@ def pig_latin():
 
 #main procedure
 def main():
-   word_separator()
+      get_initials()
+      date_printer()
+      telephone_number_translate()
+      sentence_capitalizer()
+      vowel_count()
+      consonant_count()
+      most_frequent_char()
+      word_separator()
+      pig_latin()
 
 
 
