@@ -1,5 +1,28 @@
 
 
+
+
+# DRIVER LICENSE EXAM PROGRAM (Not fully updated)
+# File name format:
+#      correct answer: answer.txt
+#      questions: questions.txt
+#      user answer: userans_userid.txt  where userid is the id given to
+#                                       the user when entering the exam
+# Main functions:
+# 1. Take an exam:
+#    1.a Enter id to store result in a file
+#    1.b Load questions and allowing inputting answer
+#    1.c Display result if needed
+# 2. See result of an take attempt:
+#    2.a Enter id to get the result file of the user
+#    2.b Display result
+#    2.c Compare result and decide if the user passed or failed
+# 3. Quit
+
+
+
+
+# Program to let user make an exam attempt
 def license_exam_program():
     while True:
         print('>> 1. Take an exam')
@@ -8,7 +31,7 @@ def license_exam_program():
         while True:
             try:
                 option = int(input('Choose 1/2/3: '))
-                if option not in [1,2, 3]:
+                if option not in [1,2,3]:
                     print('Re-input the option!')
                     continue
                 if option == 1:
@@ -31,14 +54,57 @@ def license_exam_program():
 
 # Function to handle a exam attempt
 def take_exam():
-    return None
+    while True:  # Keep getting input from the user
+        try:
+            user_id = int(input('Enter your exam id (10 digits): '))
+            if len(str(user_id)) != 10:
+                print('Invalid id!')
+                continue
+            else:
+                break
+        except ValueError:
+            print('Re-input the id!')
+            continue
+    print('<<<<<<<<<<< START >>>>>>>>>>')
+    questions_file = open('questions.txt', 'r')
+    user_fname = 'userans_' + str(user_id) + '.txt'
+    user_answer_file = open(user_fname, 'a')
+    i = 1
 
+    # Load questions from file and allow entering answers after each question
+    for line in questions_file:
+        if line != '\n':
+            print(line)
+        else:
+            while True: # Keeping asking for valid answer
+                try:
+                    user_ans = str(input('>> Enter your answer: '))
+                    if len(user_ans) != 1 or user_ans.upper() not in 'ABCD':
+                        print('Invalid answer! Re-input answer!')
+                        continue
+                    else: # write user answer to a file
+                        user_answer_file.write('{}. {} \n'.format(i, user_ans.upper()))
+                        i += 1
+                        break
+                except ValueError:
+                    print('Re-input answer!')
+                    continue
 
+    questions_file.close()
+    user_answer_file.close()
 
-
-
-
-
+    while True: #asking for the need to see the result immediately
+        try:
+            opt = str(input('Wanna see your result right now? [Y/N]: '))
+            if len(opt) != 1 or opt.upper() not in 'YN':
+                print('Re-input [Y/N]!')
+                continue
+            else:
+                display_result(user_id)
+                break
+        except ValueError:
+            print('Re-input [Y/N]!')
+            continue
 
 # Function to get result for an taken attempt
 def see_available_result():
@@ -54,24 +120,11 @@ def see_available_result():
         except ValueError:
             print('Re-input the id!')
             continue
-    while True:  # Keep getting input from the user
-        try:
-            exam_code = int(input('Enter your exam code (1/2/3/4): '))
-            if len(str(exam_code)) != 1:
-                print('Invalid id!')
-                continue
-            else:
-                break
-        except ValueError:
-            print('Re-input id!')
-            continue
-
-
-    see_result(str(user_id), str(exam_code))
+    display_result(str(user_id))
 
 
 
-
+# Function to load any file which contain a list of answer in secified format
 def load_answer_from_file(file_name):
     try:
         file = open(file_name, 'r')
@@ -86,17 +139,30 @@ def load_answer_from_file(file_name):
     file.close()
     return answer
 
-def see_result(user_id, exam_code):
-    user_answer = 'code0' + exam_code + '_' + user_id + '.txt'
-    exam_answer ='ans_code0' + exam_code + '.txt'
+# Function to display the exam result of the user, given a user id
+def display_result(user_id):
+    user_answer = 'userans_' + str(user_id) + '.txt'
     user_answer_list = load_answer_from_file(user_answer)
-    correct_answer_list = load_answer_from_file(exam_answer)
-    return compare_result(user_answer_list, correct_answer_list)
+    correct_answer_list = load_answer_from_file('answer.txt')
+    question_file = open('questions.txt', 'r')
+
+    i = 0
+    for line in question_file:
+        if line != '\n':
+            print(line)
+        else:
+            c = correct_answer_list[i].upper()
+            u = user_answer_list[i].upper()
+            status = 'Correct' if u == c else 'Wrong'
+            print('{}|{}|{}'.format(('Correct Answer: ' + c), ('Your answer: ' + u), status ))
+            i += 1
+    question_file.close()
+    compare_result(user_answer_list, correct_answer_list)
 
 def compare_result(correct_ans : list , user_answer : list):
-    if len(correct_ans) != len(user_answer):
-        print('Cannot compare result')
-    else:
+    # if len(correct_ans) != len(user_answer):
+    #     print('Cannot compare result')
+    # else:
         correct_num = 0
         wrong_ans = []
         n = len(correct_ans)
@@ -115,4 +181,8 @@ def compare_result(correct_ans : list , user_answer : list):
         # print('The id of wrongly answered questions: ', wrong_ans if len(wrong_ans) > 0 else 'none')
 
 
-license_exam_program()
+
+
+
+if __name__ == '__main__':
+    license_exam_program()

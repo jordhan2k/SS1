@@ -13,9 +13,8 @@ def bubble_sort(a : list ):
 
     n = len(a)
     for i in range(0, n):
-        print(a)
+        #print(a)
         for j in range(0, n-i-1):
-
             if a[j] > a[j+1]:
                 temp = a[j]
                 a[j] = a[j+1]
@@ -30,7 +29,7 @@ def bubble_sort_optimize(a: list):
 
         is_sorted = True
         for i in range(0, n-1):
-            print(a)
+            #print(a)
             if a[i] > a[i+1]:
                 temp = a[i]
                 a[i] = a[i+1]
