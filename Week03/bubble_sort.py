@@ -27,6 +27,7 @@ def bubble_sort_optimize(a: list):
     n = len(a)
 
     while is_sorted == False:
+
         is_sorted = True
         for i in range(0, n-1):
             print(a)
@@ -43,7 +44,7 @@ def bubble_sort_optimize(a: list):
 
 
 
-a = [17,10,4,9,3,7,5,1]
+a = [ 25 ,57 ,48 ,37, 12, 92 ,86, 33]
 print('original: ', a)
 print('(1) sorted: ', bubble_sort(a))
 
