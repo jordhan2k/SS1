@@ -7,14 +7,34 @@
 
 # Problem 4
 def calculate_profit():
-    total_sale = float(input('total sales (): '))
+    while True:
+        try:
+            total_sale = float(input('total sales (): '))
+            if total_sale < 0:
+                print('Invalid input! Re-input')
+                continue
+            else:
+                break
+        except ValueError:
+            print('Invalid input! Re-input')
+            continue
     profit = (total_sale * 23) / 100
     print('Profit: $', profit)
 
 
 # Problem 5
 def calculate_acre():
-    total_square_feet = float(input('Input the total square feet: '))
+    while True:
+        try:
+            total_square_feet = float(input('Input the total square feet: '))
+            if total_square_feet < 0:
+                print('Invalid input! Re-input')
+                continue
+            else:
+                break
+        except ValueError:
+            print('Invalid input! Re-input')
+            continue
     total_acre = total_square_feet / 43560
     print('The number of acres: ', total_acre)
 
@@ -45,16 +65,16 @@ def calculate_purchase_info():
 # Problem 8
 def calculate_mpg():
     miles_driven = float(input('Enter the number of miles driven: '))
-    gallon_gas = float(input('Enter the numbaer of gallons of gas uesd: '))
+    gallon_gas = float(input('Enter the number of gallons of gas used: '))
     mpg = miles_driven / gallon_gas
     print('MPG: ', mpg)
 
 
 # problem 9
-def convert_celcius_to_fahrenheit():
-    celcius = float(input('Enter the number of Celcius degrees: '))
-    fahrenheit = (9 / 5) * celcius + 32
-    print(celcius, 'C degree is ', fahrenheit, 'F degree')
+def convert_celsius_to_fahrenheit():
+    celsius = float(input('Enter the number of Celsius degrees: '))
+    fahrenheit = (9 / 5) * celsius + 32
+    print(celsius, 'C degree is ', fahrenheit, 'F degree')
 
 
 
