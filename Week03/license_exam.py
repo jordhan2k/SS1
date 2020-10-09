@@ -181,8 +181,5 @@ def compare_result(correct_ans : list , user_answer : list):
         # print('The id of wrongly answered questions: ', wrong_ans if len(wrong_ans) > 0 else 'none')
 
 
-
-
-
 if __name__ == '__main__':
     license_exam_program()
