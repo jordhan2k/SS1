@@ -1,47 +1,5 @@
 
-
-# def modular_arithmetic_solver(a: int, b: int, n: int):
-#
-#     # Step 1: Get greatest common divisor
-#     if (a > n):
-#         a = a % n
-#     d , s, r = euclidean_algo(n, a)
-#     ddqr_table = greatest_common_divisor_table(a, n)
-#     display_ddqr_table(ddqr_table)
-#     print(euclidean_algo(n, a))
-#
-#     # Step 2:
-#     if b % d == 0:
-#         root_num = d
-#         d, s, r = euclidean_algo(n, a)
-#
-#         print('No. of roots: ', root_num)
-#         x0 = (r * (b // d)) % (n // d)
-#         print('x0', x0)
-#         root_list = []
-#         for i in range(0, d):
-#             root_list.append(x0 + (i*n)//d)
-#         print(root_list)
-#     else:
-#         root_num = 0
-#
-#     # Step 3
-#     # Identify d = n.(s) + a.(r)
-
-
-
-
-#đi chép
-def euclidean_algo(n, a):
-    # Base Case
-    if a == 0:
-        return n, 1, 0
-    else:
-        d, s, r = euclidean_algo(a, n % a)
-        # if s != 0 and r != 0:
-            # print(d, s, r)
-        return (d, r, s-(n // a) * r)
-
+# Function to get the gcd of 2 numbers
 def gcd(a: int, n: int):
     if a == 1 or n == 1:
         return 1
@@ -49,11 +7,12 @@ def gcd(a: int, n: int):
         while a != 0:
             c = n
             n = a
-            q = c // a
             a = c % a
     return n
+
+
 # Function to get a table for dividend, divisor, quotient, remainder
-def greatest_common_divisor_table(a: int, n: int):
+def gcd_algo_table(a: int, n: int):
     ddqr_table = []
     if a == 1 or n == 1:
         return 1
@@ -108,21 +67,21 @@ def identify_s_and_r(ddqr_table: list, gcd: int):
 
 
 # Function to display a table of dividend, divisor, quotient, remainder
-def display_ddqr_table(ddqr_table):
+def display_gcd_algo_table(gcd_table: list):
     dividend = []
     divisor = []
     quotient = []
     remainder = []
     print('{0:^10s}|{1:^10s}|{2:^10s}|{3:^10s}'.format('Dividend', 'Divisor', 'Quotient', 'Remainder'))
-    for i in range(0 , len(ddqr_table)):
+    for i in range(0, len(gcd_table)):
         if (i % 4 == 0):
-            dividend.append(ddqr_table[i])
+            dividend.append(gcd_table[i])
         if (i % 4 == 1):
-            divisor.append(ddqr_table[i])
+            divisor.append(gcd_table[i])
         if (i % 4 == 2):
-            quotient.append(ddqr_table[i])
+            quotient.append(gcd_table[i])
         if (i % 4 == 3):
-            remainder.append(ddqr_table[i])
+            remainder.append(gcd_table[i])
     for i in range(0, len(dividend)):
         print('{0:^10d}|{1:^10d}|{2:^10d}|{3:^10d}'.format(dividend[i], divisor[i], quotient[i], remainder[i]))
 
@@ -150,8 +109,8 @@ def display_solution(a, b, n):
     else:
         print('Solve the equation (1): ')
     d = gcd(a, n)
-    gcd_table = greatest_common_divisor_table(af, n)
-    display_ddqr_table(gcd_table)
+    gcd_table = gcd_algo_table(af, n)
+    display_gcd_algo_table(gcd_table)
     print('{:^40}'.format('Table 1. GCD Algorithm'))
     s_r_report, s, r = identify_s_and_r(gcd_table, d)
     print('We have d = gcd({}, {}) = {} => {} roots'.format(af, n, d, d))
@@ -200,8 +159,6 @@ def modular_arithmetic_solver():
         except ValueError:
             print('Invalid input, please re-input!')
             continue
-
     display_solution(a, b, n)
-
 
 modular_arithmetic_solver()
