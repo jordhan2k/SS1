@@ -74,7 +74,7 @@ def take_exam():
     # Load questions from file and allow entering answers after each question
     for line in questions_file:
         if line != '\n':
-            print(line)
+            print(line.rstrip('\n'))
         else:
             while True: # Keeping asking for valid answer
                 try:
@@ -83,6 +83,7 @@ def take_exam():
                         print('Invalid answer! Re-input answer!')
                         continue
                     else: # write user answer to a file
+                        print()
                         user_answer_file.write('{}. {} \n'.format(i, user_ans.upper()))
                         i += 1
                         break
@@ -141,6 +142,7 @@ def load_answer_from_file(file_name):
 
 # Function to display the exam result of the user, given a user id
 def display_result(user_id):
+    print('<<<<<<<<<< RESULT >>>>>>>>>>')
     user_answer = 'userans_' + str(user_id) + '.txt'
     user_answer_list = load_answer_from_file(user_answer)
     correct_answer_list = load_answer_from_file('answer.txt')
@@ -149,12 +151,13 @@ def display_result(user_id):
     i = 0
     for line in question_file:
         if line != '\n':
-            print(line)
+            print(line.rstrip('\n'))
         else:
             c = correct_answer_list[i].upper()
             u = user_answer_list[i].upper()
             status = 'Correct' if u == c else 'Wrong'
-            print('{}|{}|{}'.format(('Correct Answer: ' + c), ('Your answer: ' + u), status ))
+            print('{}|{}|{} \n'.format(('Correct Answer: ' + c), ('Your answer: ' + u), status ))
+
             i += 1
     question_file.close()
     compare_result(user_answer_list, correct_answer_list)

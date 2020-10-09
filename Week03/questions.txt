@@ -1,121 +1,122 @@
-1. Which type of beans are used to make baked beans?
-A. Borlotti beans
-B. Haricot beans
-C. Cannellini beans
-D. Flageolet beans
+1. Which of the following uses FIFO method
+A. Queue
+B. Stack
+C. Hash Table
+D. Binary Search Tree
 
-2. What does IPA stand for?
-A. Intensely potent ale
-B. India pale ale
-C. India premium ale
-D. International porter association
+2. A circular linked list can be used for
+A. Stack
+B. Queue
+C. Both Stack & Queue
+D. Neither Stack or Queue
 
-3. Bobotie is the national dish of which country?
-A. Nigeria
-B. Ethiopia
-C. South Africa
-D. Kenya
+3. The following formula is of:
+" left_subtree (keys)  <=  node (key)  <=  right_subtree (keys) "
+A. Binary Tree
+B. Complete Binary Tree
+C. Binary Search Tree
+D. All of the above
 
-4. Which year did The Great British Bake Off first appear on TV?
-A. 2009
-B. 2010
-C. 2011
-D. 2012
+4. Visiting root node after visiting left and right sub-trees is called
+A. In-order Traversal
+B. Pre-order Traversal
+C. Post-order Traversal
+D. None of above
 
-5. If you ordered nigiri from a Japanese restaurant menu, what would you be served?
-A. A type of dumpling
-B. A selection of sliced raw fish & seafood
-C. A type of sushi featuring rice topped with fish or seafood
-D. A type of sushi featuring raw fish or seafood wrapped in rice and seaweed
+5. Which of the following has search efficiency of O(1)
+A. Tree
+B. Heap
+C. Linked-List
+D. Hash Table
 
-6. Which of these chocolate bars does not contain nuts in its ingredient list?
-A. Snickers
-B. Double Decker
-C. Picnic
-D. Toblerone
+6. How many swaps are required to sort the given array using bubble sort - { 2, 5, 1, 3, 4}
+A. 4
+B. 5
+C. 6
+D. 7
 
-7. Which flower does the spice saffron come from?
-A. Orchid
-B. Crocus
-C. Nasturtium
-D. Poppy
+7. If queue is implemented using arrays, what would be the worst run time complexity of queue and dequeue operations?
+A. O(n), O(n)
+B. O(n), O(1)
+C. O(1), O(n)
+D. O(1), O(1)
 
-8. A Whitby Bun is flavoured with what?
-A. Raspberry
-B. Coffee
-C. Cinnamon
-D. Lemon
+8. In the deletion operation of max heap, the root is replaced by
+A. next available value in the left sub-tree.
+B. next available value in the right sub-tree.
+C. any random value from the heap.
+D. last element of the last level
 
-9. Gruyère is a cheese from which country?
-A. France
-B. Switzerland
-C. Austria
-D. Germany
+9. Binary search tree is an example of complete binary tree with special attributes.
+A. BST does not care about complete binary tree properties.
+B. BST takes care of complete binary tree properties.
+C. It depends upon the input.
+D. None of the above.
 
-10. What are the two main ingredients in the dish Cullen Skink?
-A. Smoked haddock and parsnips
-B. Cabbage and potatoes
-C. Smoked haddock and potatoes
-D. Smoked salmon and potatoes
+10. The worst case complexity of binary search matches with
+A. interpolation search
+B. linear search
+C. merge sort
+D. none of the above
 
-11.
-A.
-B.
-C.
-D.
+11. The memory address of the first element of an array is called
+A. floor address
+B. foundation address
+C. first address
+D. base address
 
-12.
-A.
-B.
-C.
-D.
+12. Two dimensional arrays are also called
+A. tables arrays
+B. matrix arrays
+C. both of above
+D. none of above
 
-13.
-A.
-B.
-C.
-D.
+13.____ is not the component of data structure.
+A. Operations
+B. Storage Structures
+C. Algorithms
+D. None of above
 
-14.
-A.
-B.
-C.
-D.
+14.The time factor when determining the efficiency of algorithm is measured by
+A. Counting microseconds
+B. Counting the number of key operations
+C. Counting the number of statements
+D. Counting the kilobytes of algorithm
 
-15.
-A.
-B.
-C.
-D.
+15.Which of the following is two way list?
+A. grounded header list
+B. circular header list
+C. linked list with header and trailer nodes
+D. none of above
 
-16.
-A.
-B.
-C.
-D.
+16.Which if the following is/are the levels of implementation of data structure
+A. Abstract level
+B. Application level
+C. Implementation level
+D. All of the above
 
-17.
-A.
-B.
-C.
-D.
+17. Two main measures for the efficiency of an algorithm are
+A. Processor and memory
+B. Time and space
+C. Complexity and capacity
+D. Data and space
 
-18.
-A.
-B.
-C.
-D.
+18.When inorder traversing a tree resulted E A C K F H D B G; the preorder traversal would return
+A. F A E K C D B H G
+B. F A E K C D H G B
+C. E A F K H D C B G
+D. F E A K D C H B G
 
-19.
-A.
-B.
-C.
-D.
+19.When does top value of the stack changes?
+A. Before deletion
+B. While checking underflow
+C. At the time of deletion
+D. After deletion
 
-20.
-A.
-B.
-C.
-D.
+20.Which of the following is non-liner data structure?
+A. Stacks
+B. Trees
+C. Strings
+D. List
 
 << End >>
