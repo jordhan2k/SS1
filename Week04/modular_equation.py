@@ -53,19 +53,6 @@ def identify_s_and_r(ddqr_table: list, gcd: int):
 
     return s_r_report, s_list[len(s_list)-1], r_list[len(r_list)-1]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Function to display a table of dividend, divisor, quotient, remainder
 def display_gcd_algo_table(gcd_table: list):
     dividend = []
@@ -88,13 +75,10 @@ def display_gcd_algo_table(gcd_table: list):
 
 
 
-# modular_arithmetic_solver()
-
-#
-# modular_arithmetic_solver(2323, 8, 5544)
 
 
 
+# Function to display the detailed solution
 def display_solution(a, b, n):
     print('<<<< SOLUTION >>>>')
     print('The equation: {} x X = {} (mod {})       (1)'.format(a, b, n))
@@ -122,9 +106,8 @@ def display_solution(a, b, n):
         root_list.append(x0 + (i*n)//d)
     print('=> x = {}'.format(root_list))
 
-
-
-
+# Function to allow user enter the problem
+# and show detailed solution
 def modular_arithmetic_solver():
     while True:
         try:
