@@ -105,23 +105,19 @@ def message_decription(p, q, e, c):
     n = p * q
     z = (p -1) * (q -1)
     # solve: e*(d) = 1 (mod z) to find d
-    gcd_table = gcd_algo_table(e, z)
+    # gcd_table = gcd_algo_table(e, z)
     # gcd(e,z) = z.(s) + e.(r)  // d = r
-    s, d = identify_s_and_r( gcd_table , gcd(e,z))
-    d = d % z
-    message = mod_process(c, d, n)
-    return message
+    s, d = identify_s_and_r( gcd_algo_table(e, z), gcd(e,z))
+    return mod_process(c, d % z, n)
 
 def message_encription(p, q, d, m):
     n = p * q
     z = (p -1) * (q -1)
     # solve: d*(e) = 1 (mod z) to find d
-    gcd_table = gcd_algo_table(d, z)
+    # gcd_table = gcd_algo_table(d, z)
     # gcd(e,z) = z.(s) + e.(r)  // d = r
-    s, e = identify_s_and_r( gcd_table , gcd(d,z))
-    e = e % z
-    message = mod_process(m, e, n)
-    return message
+    s, e = identify_s_and_r( gcd_algo_table(d, z) , gcd(d,z))
+    return mod_process(m, e % z, n)
 
 # Function to generate keys using 2 big primes (p, q)
 def key_generate(p, q):
@@ -172,19 +168,15 @@ def rsa_encription(p, q, d, message: str):
     return en_ascii
 # rsa_system_decription(7, 11, 17, '37 39 29')
 
+
+#INCOMPLETE
 def signature_generate(message, d, n):
     sig = mod_process(message, d, n)
     return sig
 
-
+# UPDATING
 def signature_vefify(sig, e, n, m):
-    m_prime = mod_process(sig, e, n)
-    if m_prime != m:
-        return False
-    return True
-
-
-
+    return True if mod_process(sig, e, n) == m else False
 
 
 
