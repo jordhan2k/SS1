@@ -1,9 +1,6 @@
 import random
 
 # Function to get a table for dividend, divisor, quotient, remainder
-
-
-
 def gcd_algo_table(a: int, n: int):
     ddqr_table = []
     if a == 1 or n == 1:
@@ -50,15 +47,7 @@ def identify_s_and_r(ddqr_table: list, gcd: int):
 
 # Function to get gcd of 2 number
 def gcd(a: int, n: int):
-    if a == 1 or n == 1:
-        return 1
-    else:
-        while a != 0:
-            c = n
-            n = a
-            a = c % a
-    return n
-
+        return gcd(n, a%n) if n != 0 else a
 
 # Function to change decimal to binary (used for turning the power)
 def dec_to_bin(pow):
@@ -91,9 +80,9 @@ def mod_process(num, power, n):
             message = (message * simple_mod_list[k]) % n
     return message
 
-print()
 
-# Function to decript a cybertext(c)
+
+# Function to decript a single cybertext(c)
 #public key (n, e)
 # #private key (n, d) => find d
 # p, q are primes
@@ -104,19 +93,13 @@ print()
 def message_decription(p, q, e, c):
     n = p * q
     z = (p -1) * (q -1)
-    # solve: e*(d) = 1 (mod z) to find d
-    # gcd_table = gcd_algo_table(e, z)
-    # gcd(e,z) = z.(s) + e.(r)  // d = r
-    s, d = identify_s_and_r( gcd_algo_table(e, z), gcd(e,z))
+    s, d = identify_s_and_r(gcd_algo_table(e, z), gcd(e,z))
     return mod_process(c, d % z, n)
 
 def message_encription(p, q, d, m):
     n = p * q
-    z = (p -1) * (q -1)
-    # solve: d*(e) = 1 (mod z) to find d
-    # gcd_table = gcd_algo_table(d, z)
-    # gcd(e,z) = z.(s) + e.(r)  // d = r
-    s, e = identify_s_and_r( gcd_algo_table(d, z) , gcd(d,z))
+    z = (p - 1) * (q - 1)
+    s, e = identify_s_and_r( gcd_algo_table(d, z), gcd(d,z))
     return mod_process(m, e % z, n)
 
 # Function to generate keys using 2 big primes (p, q)
@@ -146,28 +129,20 @@ def key_generate(p, q):
 # Function to show the original message given a cyphertext string
 # p, q are primes
 def rsa_decription(p, q, e, cyphertext: str):
-
-    cypher_sep = cyphertext.split()
     org_ascii = ''
     org_message = ''
-    for x in cypher_sep:
-        mess_part = message_decription(p, q, e, int(x))
-        org_ascii += str(mess_part) + ' '
-        org_message += str(chr(mess_part))
+    for x in cyphertext.split():
+        org_ascii += str(message_decription(p, q, e, int(x))) + ' '
+        org_message += str(chr(message_decription(p, q, e, int(x))))
     print('Original ASCII: ' + org_ascii)
     return org_message
 
 # Function to encrypt an message
 def rsa_encription(p, q, d, message: str):
     en_ascii = ''
-    en_message = ''
-    for x in message:
-        # ord(x)
-        mess_part = message_decription(p, q, d, ord(x))
-        en_ascii += str(mess_part) + ' '
+    for x in message:# ord(x)
+        en_ascii += str(message_decription(p, q, d, ord(x))) + ' '
     return en_ascii
-# rsa_system_decription(7, 11, 17, '37 39 29')
-
 
 #INCOMPLETE
 def signature_generate(message, d, n):
@@ -178,10 +153,7 @@ def signature_generate(message, d, n):
 def signature_vefify(sig, e, n, m):
     return True if mod_process(sig, e, n) == m else False
 
-
-
-# print(signature_generate(2, 3, 15))
-# print(signature_vefify(8, 3, 15, 2))
+#
 def check_prime(num):
     if num <= 1:
         return False
