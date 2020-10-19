@@ -1,48 +1,20 @@
 import random
+from hashlib import sha256
 
-# Function to get a table for dividend, divisor, quotient, remainder
-def gcd_algo_table(a: int, n: int):
-    ddqr_table = []
-    if a == 1 or n == 1:
-        return 1
+def egcd(a, b):
+    if a == 0:
+        return (b, 0, 1)
     else:
-        while a != 0:
-            c = n
-            n = a
-            q = c // a
-            a = c % a
-            ddqr_table.append(c)# divident
-            ddqr_table.append(n)# divisor
-            ddqr_table.append(q)# quotient
-            ddqr_table.append(a)# remainder
-    return ddqr_table
-
-# Identify d = n.(s) + a.(r)
-def identify_s_and_r(ddqr_table: list, gcd: int):
-    s_r_report = ''
-    dividend = []
-    divisor = []
-    for i in range(0, len(ddqr_table)):
-        if i % 4 == 0:
-            dividend.append(ddqr_table[i])
-        if (i % 4 == 1):
-            divisor.append(ddqr_table[i])
-    dividend.reverse()
-    divisor.reverse()
-    r = 1
-    s_list = []
-    r_list = []
-    for i in range(1, len(dividend)):
-        s = r
-        s_list.append(s)
-        r = (gcd - dividend[i]* s) // divisor[i]
-        r_list.append(r)
-    # for j in range(1, len(dividend)):
-    #     s_r_report += ('Step {}: {} = {}.({}) + {}.({}) \n'.format(j - 1, gcd, dividend[j], s_list[j-1], divisor[j], r_list[j-1]))
-    # s_r_report,
-    return s_list[len(s_list)-1], r_list[len(r_list)-1]
+        g, y, x = egcd(b % a, a)
+        return (g, x - (b // a) * y, y)
 
 
+def modinv(a, m):
+    g, x, y = egcd(a, m)
+    if g != 1:
+        raise Exception('modular inverse does not exist')
+    else:
+        return x % m
 
 
 # Function to get gcd of 2 number
@@ -65,7 +37,6 @@ def dec_to_bin(pow):
     # 37^(2^0) (mod 77) = 37
     # 37^(2^1) (mod 77) = 37^2 (mod 77) = 60
     # ....
-    #
 def mod_process(num, power, n):
     power_to_bin : list = dec_to_bin(power)
     simple_mod_list = []
@@ -93,13 +64,13 @@ def mod_process(num, power, n):
 def message_decription(p, q, e, c):
     n = p * q
     z = (p -1) * (q -1)
-    s, d = identify_s_and_r(gcd_algo_table(e, z), gcd(e,z))
+    d = modinv(e, z)
     return mod_process(c, d % z, n)
 
 def message_encription(p, q, d, m):
     n = p * q
     z = (p - 1) * (q - 1)
-    s, e = identify_s_and_r( gcd_algo_table(d, z), gcd(d,z))
+    e = modinv(d,z)
     return mod_process(m, e % z, n)
 
 # Function to generate keys using 2 big primes (p, q)
@@ -118,11 +89,8 @@ def key_generate(p, q):
         except ValueError:
             continue
 
-    gcd_table: list = gcd_algo_table(e, z)
-
-    # gcd(e,z) = z.(s) + e.(r)  // d = r
-    s, d = identify_s_and_r(gcd_table, gcd(e, z))
-    return n, e, d % z
+    d = modinv(e, z)
+    return [[n, e], [n, d % z]]
 
 
 
@@ -143,6 +111,8 @@ def rsa_encription(p, q, d, message: str):
     for x in message:# ord(x)
         en_ascii += str(message_decription(p, q, d, ord(x))) + ' '
     return en_ascii
+    # return ' '.join([str(message_decription(p, q, d, ord(x))) for x in message])
+
 
 #INCOMPLETE
 def signature_generate(message, d, n):
@@ -162,8 +132,6 @@ def check_prime(num):
             if num % i == 0:
                 return False
     return True
-
-
 
 def rsa_prog():
     while True:
@@ -190,22 +158,23 @@ def rsa_prog():
             continue
 
 
-    n, e, d = key_generate(p, q)
-    print('Your key: public ({}, {}), private ({}, {})'.format(n, e, n, d))
+    pubk , prik = key_generate(p, q)
+    print('Your key: public ({}), private ({})'.format(pubk, prik))
     message = input('Enter a mesage: ')
     org_ascii = ''
     for x in message:
         org_ascii += str(ord(x)) + ' '
     print('Org_ascii from sender: ', org_ascii)
 
-    cypher_text = rsa_encription(p, q, d, message)
+
+    cypher_text = rsa_encription(p, q, prik[1], message)
     print('Cypher text: ', cypher_text)
 
-    cypher = rsa_decription(p, q, e, cypher_text)
+    cypher = rsa_decription(p, q, pubk[1], cypher_text)
     print('Message: ', cypher)
 
+
+
 rsa_prog()
-
-
 
 
