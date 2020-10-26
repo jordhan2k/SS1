@@ -14,26 +14,25 @@ def get_freq(s: str):
             freq[ch] += 1
         else:
             freq[ch] = 1
-    freq = sorted(freq.items(), key=lambda item: item[1], reverse=True)
-    return [Node(each[0], each[1], None, None)for each in freq]
+    return [Node(each[0], each[1], None, None) for each in sorted(freq.items(), key=lambda item: item[1], reverse=True)]
 
 # Function to build a huffman tree
 # Return the root node
 def build_tree(node_list_org: list):
     # copy the original node list
-    node_list = node_list_org[:]
+    nlist = node_list_org[:]
 
     # build a huffman tree from a node list
-    while len(node_list ) > 1:
-        # contruct a tree from 2 last nodes (with minimum frequency)
-        parent_node = Node(None, (node_list[-1].f + node_list[-2].f), node_list[-2], node_list[-1])
+    while len(nlist ) > 1:
+        # construct a tree from 2 last nodes (with minimum frequency)
+        sum_node = Node(None, (nlist[-1].f + nlist[-2].f), nlist[-2], nlist[-1])
 
-        node_list[-2] = parent_node # replace the item at -2 position with the new tree
-        node_list.pop()  # remove the last item
+        nlist[-2] = sum_node  # replace the item at -2 position with the new tree
+        nlist.pop()  # remove the last item
 
         # sort after each time forming a subtree
-        node_list = sorted(node_list, key = lambda item: item.f, reverse=True)
-    return node_list[0]  # the root of the huffman tree
+        nlist = sorted(nlist, key=lambda item: item.f, reverse=True)
+    return nlist[0]  # the root of the huffman tree
 
 def printTree(root):
         if root != None:
@@ -74,12 +73,3 @@ def huffman_encoding():
         print('{:^10} | {:^10} |  {:10}'.format('" "' if i.c == ' ' else i.c, i.f, i.code))
 
 huffman_encoding()
-
-
-
-
-
-
-
-
-
