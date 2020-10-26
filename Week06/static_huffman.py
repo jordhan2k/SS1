@@ -5,8 +5,6 @@ class Node:
         self.l = left
         self.r = right
 
-
-
 # Function to get a list containing
 # all node with characters and frequency
 def get_freq(s: str):
@@ -37,7 +35,6 @@ def build_tree(node_list_org: list):
         node_list = sorted(node_list, key = lambda item: item.f, reverse=True)
     return node_list[0]  # the root of the huffman tree
 
-
 def printTree(root):
         if root != None:
             _printTree(root, 0)
@@ -59,7 +56,6 @@ def assign_code(node, code):
         assign_code(node.l, code + '0')  # assign code 0 for left children
         assign_code(node.r, code + '1')  # assign code 1 for right children
 
-
 def huffman_encoding():
     a = get_freq(str(input('Input a string: ')))
 
@@ -69,19 +65,13 @@ def huffman_encoding():
 
     printTree(b)  # print the tree
 
-    print([i.c for i in a])
-
     # sort the list again (based on the length of the code)
     # some characters with the same frequency but different code length
     a = sorted(a, key=lambda node: len(node.code))
 
-    print([i.c for i in a])
-
-
     print('{:^10} | {:^10} | {:^10}'.format('char', 'freq', 'code'))
     for i in a:
         print('{:^10} | {:^10} |  {:10}'.format('" "' if i.c == ' ' else i.c, i.f, i.code))
-
 
 huffman_encoding()
 
