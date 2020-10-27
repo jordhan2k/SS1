@@ -1,9 +1,12 @@
+#### Node Class ###
 class Node:
     def __init__(self, char,  freq, left, right):
         self.c = char
         self.f = freq
         self.l = left
         self.r = right
+        self.code = None
+
 
 # Function to get a list containing
 # all node with characters and frequency
@@ -23,9 +26,9 @@ def build_tree(node_list_org: list):
     nlist = node_list_org[:]
 
     # build a huffman tree from a node list
-    while len(nlist ) > 1:
+    while len(nlist) > 1:
         # construct a tree from 2 last nodes (with minimum frequency)
-        sum_node = Node(None, (nlist[-1].f + nlist[-2].f), nlist[-2], nlist[-1])
+        sum_node = Node(nlist[-2].c + nlist[-1].c, (nlist[-1].f + nlist[-2].f), nlist[-2], nlist[-1])
 
         nlist[-2] = sum_node  # replace the item at -2 position with the new tree
         nlist.pop()  # remove the last item
