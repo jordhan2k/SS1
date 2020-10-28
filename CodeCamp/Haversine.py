@@ -47,7 +47,7 @@ def calculate_distance_prog():
         lat_b = get_rad_latitude(float(arr3[0]), float(arr3[1]), float(arr3[2]), str(arr3[3]))
         print(lat_b)
 
-        arr4 = input('Longitude [deg-min-sec-dir]')
+        arr4 = input('Longitude [deg-min-sec-dir]: ')
         arr4 = arr4.split()
         long_b = get_rad_longitude(float(arr4[0]), float(arr4[1]), float(arr4[2]), str(arr4[3]))
         print(long_b)
@@ -59,7 +59,7 @@ def calculate_distance_prog():
         distance = get_distance(a)
 
 
-        print('The distance from {} to {} is approximately: {}'.format(name_a, name_b, distance.real))
+        print('The distance from {} to {} is approximately: {:.2f}'.format(name_a, name_b, distance.real))
 
 if __name__ == '__main__':
 
