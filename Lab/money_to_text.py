@@ -8,11 +8,8 @@ def get_separate_number():
     # Fill the number with 0 before spliting
     s = str(s).zfill(12)
     sep_number_str = list(s)
-    sep_number = []
-    for x in sep_number_str:
-        sep_number.append(int(x))
+    sep_number = [int(x) for x in sep_number_str]
     return sep_number
-
 
 def get_second_array(s : list):
     second_array = [s[0] , s[0] + s[1], s[0] + s[1] + s[2],
@@ -22,32 +19,20 @@ def get_second_array(s : list):
                     ]
     return second_array
 
-
-
 list_number_one = ['một', 'hai' , 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín']
 list_number_two = ['mười', 'hai', 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín']
 
 # Function to get the
 #  Pass in separate number
-
 def get_initial_number_str(sn: list):
-
     initial_number = []
     for i in range(0, len(sn)):
-
         if i in [0, 3]:
-            # ex:
-            if sn[i] == 0:
-                initial_number.append('')
-            else:
-                # ex sn[i] == 9 -> append(list_number_one[8]) -> append 'chín'
-                initial_number.append(list_number_one[sn[i]-1])
+                initial_number.append('' if sn[i] == 0 else list_number_one[sn[i]-1])
+
         if i in [1, 4]:
             if sn[i] == 0:
-                if sn[i-1] != 0 and sn[i+1] != 0:
-                    initial_number.append('lẻ')
-                else:
-                    initial_number.append('')
+                    initial_number.append('lẻ' if sn[i-1] != 0 and sn[i+1] != 0 else '')
             else:
                 initial_number.append(list_number_two[sn[i] - 1])
 
@@ -67,10 +52,7 @@ def get_initial_number_str(sn: list):
                 if sn[i+1] == 0:
                     initial_number.append('')
                 else:
-                    if sn[i-2] == 0 and sn[i-1] == 0 and sn[i+1] != 0:
-                        initial_number.append('')
-                    else:
-                        initial_number.append('không trăm')
+                    initial_number.append('' if sn[i-2] == 0 and sn[i-1] == 0 and sn[i+1] != 0 else 'không trăm')
             else:
                 initial_number.append(list_number_one[sn[i]-1])
 
@@ -79,13 +61,9 @@ def get_initial_number_str(sn: list):
                 if sn[i+1] == 0:
                     initial_number.append('')
                 else:
-                    if sn[i-2] == 0 and sn[i-1] == 0 and sn[i+1] != 0:
-                        initial_number.append('')
-                    else:
-                        initial_number.append('lẻ')
+                    initial_number.append(''if sn[i-2] == 0 and sn[i-1] == 0 and sn[i+1] != 0 else 'lẻ')
             else:
                 initial_number.append(list_number_two[sn[i]-1])
-
     # return a list of initial numbers
     return initial_number
 
@@ -95,41 +73,24 @@ def get_number_unit(sn: list, sca: list):
     number_unit = []
     for i in range(0, len(sn)):
         if i in [0, 3, 6, 9]:
-            if sn[i] == 0:
-                number_unit.append('')
-            else:
-                number_unit.append('trăm')
-
+                number_unit.append('' if sn[i] == 0 else 'trăm')
         if i in [1, 4, 7, 10]:
             if sn[i] == 0:
                 number_unit.append('')
             else:
-                if sn[i] == 1:
-                    number_unit.append('')
-                else:
-                    number_unit.append('mươi')
+                number_unit.append('' if sn[i] == 1 else 'mươi')
 
         if i == 2:
-            if sn[i] == 0 and sca[i] == 0:
-                number_unit.append('')
-            else:
-                number_unit.append('tỷ')
+                number_unit.append(''if sn[i] == 0 and sca[i] == 0 else 'tỷ')
 
         if i == 5:
-            if sn[i] == 0 and sca[i] == 0:
-                number_unit.append('')
-            else:
-                number_unit.append('triệu')
+                number_unit.append('' if sn[i] == 0 and sca[i] == 0 else 'triệu')
 
         if i == 8:
-            if sn[i] == 0 and sca[i] == 0:
-                number_unit.append('')
-            else:
-                number_unit.append('ngàn')
+                number_unit.append('' if sn[i] == 0 and sca[i] == 0 else 'ngàn')
 
         if i == 11:
             number_unit.append('')
-
     return number_unit
 
 # Function to convert a number
