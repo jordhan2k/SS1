@@ -2,7 +2,6 @@ import math
 
 PI = math.pi
 EARTH_R = 6371
-
 def get_rad_latitude(deg, min, sec, dir):
         lat = (deg + min/60.0 + sec/3600) * PI / 180.0
         return lat if dir.upper() == 'N' else -lat
@@ -13,10 +12,6 @@ def get_rad_longitude(deg, min, sec, dir):
 
 def hav(num): # hav(phi) = (sin(phi/2))^2
         return (math.sin(num/2)) ** 2
-
-
-
-
 
 def get_a(lat_a, lat_b, lat_diff, long_diff):
         return hav(lat_diff) + math.cos(lat_a) * math.cos(lat_b) * hav(long_diff)
