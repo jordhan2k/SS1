@@ -1,5 +1,6 @@
 import math
 
+######################## ONGOING #############################
 #distance between latitudes (m)
 DIS_BTW_LAT = 110900
 PI = math.pi
@@ -12,7 +13,6 @@ SEC_LONG_EQU = 30.92
 # Earth's radius (km)
 EARTH_RADIUS = 6371
 
-print(PI)
 
 
 

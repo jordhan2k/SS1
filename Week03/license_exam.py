@@ -18,10 +18,6 @@
 #    2.b Display result
 #    2.c Compare result and decide if the user passed or failed
 # 3. Quit
-
-
-
-
 # Program to let user make an exam attempt
 def license_exam_program():
     while True:
@@ -49,9 +45,6 @@ def license_exam_program():
     print('See you next time!')
 
 
-
-
-
 # Function to handle a exam attempt
 def take_exam():
     while True:  # Keep getting input from the user
@@ -68,7 +61,7 @@ def take_exam():
     print('<<<<<<<<<<< START >>>>>>>>>>')
     questions_file = open('questions.txt', 'r')
     user_fname = 'userans_' + str(user_id) + '.txt'
-    user_answer_file = open(user_fname, 'a')
+    user_answer_file = open(user_fname, 'r+')
     i = 1
 
     # Load questions from file and allow entering answers after each question

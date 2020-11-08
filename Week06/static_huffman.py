@@ -75,4 +75,4 @@ def huffman_encoding():
     for i in a:
         print('{:^10} | {:^10} |  {:10}'.format('" "' if i.c == ' ' else i.c, i.f, i.code))
 
-huffman_encoding()
+

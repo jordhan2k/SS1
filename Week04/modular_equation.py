@@ -22,9 +22,13 @@ def gcd_algo_table(a: int, n: int):
             n = a
             q = c // a
             a = c % a
+            # divident
             ddqr_table.append(c)
+            # divisor
             ddqr_table.append(n)
+            # quotient
             ddqr_table.append(q)
+            # remainder
             ddqr_table.append(a)
     return ddqr_table
 

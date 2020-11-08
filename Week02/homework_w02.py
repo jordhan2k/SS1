@@ -10,7 +10,9 @@ def get_initials():
     for x in sep_part:
         print("{}.".format(x[0].capitalize()), end='')
         # end=' ' print on the same line
-    print()
+
+
+
 
 # Problem 2
 # a list of months
@@ -32,11 +34,13 @@ months = [
 # in a specified form
 def date_printer():
     # prompt user to enter a date
-    date = input("Enter a date in the form dd/mm/yyyy: ")
+    date = input("Enter a date in the form mm/dd/yyyy: ")
+
     # seperate the date by "/"
     date_sep = date.split("/")
+
     # print the input date in the form March 12, 2020
-    print(">> {0} {1}, {2}".format(months[int(date_sep[1]) - 1], int(date_sep[0]), date_sep[2]))
+    print(">> {0} {1}, {2}".format(months[int(date_sep[0]) - 1], int(date_sep[1]),date_sep[2]))
 
 
 # Problem 3
@@ -45,6 +49,7 @@ def date_printer():
 def telephone_number_translate():
     phone_num = input("Enter the number in the format of XXX-XXX-XXXX: ")
     translated_phone = ''
+
 
     for char in phone_num:
         if char == 'A' or char == 'B' or char == 'C':
@@ -85,14 +90,14 @@ def sentence_capitalizer():
 
 
 #Problem 5
-vowel = ['u', 'e', 'o', 'a', 'i', 'U', 'A', 'E', 'I', 'O']
+vowel = [ 'U', 'A', 'E', 'I', 'O']
 #Function to count vowels
 # in a string
 def vowel_count():
     string = input('Enter a string: ')
     count = 0
     for char in string:
-        if char in vowel:
+        if char.upper() in vowel:
             count += 1
     print(">> There are {} vowels".format(count))
 # Function to count consonants
@@ -101,7 +106,7 @@ def consonant_count():
     string = input('Enter a string: ')
     count = 0
     for char in string:
-        if char not in vowel:
+        if char.upper() not in vowel and char.isalpha():
             count += 1
     print(">> There are {} consonants".format(count))
 
@@ -153,31 +158,21 @@ def word_separator():
 def pig_latin():
     s = input("Enter an English sentence: ")
     s_sep = s.split(' ')
-    new_s = []
+    new_str = ''
     #for each word
     #replace the first character with '' and add it to the end
     #then add 'ay'
-    for x in s_sep:
-        temp_char = x[0]
-        new_s.append(x.replace(x[0],'') + temp_char + 'ay')
-    new_s = ' '.join(new_s)
-    print('>> The pig latin form: ', new_s)
+    for word in s_sep:
+        word = word.upper()
+        if len(word) == 1:
+            temp_word = word + 'AY'
+        else:
+            temp_word = word[1:] + word[0] + 'AY'
+
+    new_str += temp_word + ' '
+    print('>> The pig latin form: ', new_str)
 
 
 
 
 #main procedure
-def main():
-      get_initials()
-      date_printer()
-      telephone_number_translate()
-      sentence_capitalizer()
-      vowel_count()
-      consonant_count()
-      most_frequent_char()
-      word_separator()
-      pig_latin()
-
-
-
-main()

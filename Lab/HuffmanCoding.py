@@ -1,8 +1,4 @@
 import os
-from select import select
-
-from setuptools.command.test import test
-
 
 class Node:
     def __init__(self, char,  freq, left, right):
@@ -165,6 +161,9 @@ if __name__ == '__main__':
 
     compressed_path = hf.compress_file()
     print('Get compressed file here: ' + compressed_path)
-    print('Orginal text length: ' , hf.get_text_length())
-    print('Original bit length: ' , hf.get_text_bit_legth())
+    print('Orginal text length: ', hf.get_text_length())
+    print('Original bit length: ', hf.get_text_bit_legth())
     print('Encoded bit len: ', hf.get_encoded_text_bit_length())
+
+
+## COMPLETED
