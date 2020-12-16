@@ -99,23 +99,24 @@ def book_recommender(info: list, books: list, user_rating_dict: dict):
                 'averages : ouput the average ratings of all books in the system',
                  'quit: exit the program', sep = '\n')
             user_choice = str(input('next task? '))
+            uc = user_choice.upper()
 
-            # due to some problems with upper, user choice here can not be flexible
-            if user_choice not in ['recommend', 'averages', 'quit']:
+
+            if uc not in ['RECOMMEND', 'AVERAGES', 'QUIT']:
                 print('Please re-input')
                 continue
 
-            if user_choice == 'recommend':
+            if uc == 'RECOMMEND':
                 recommend()
                 print()
                 continue
 
-            if user_choice == 'averages':
+            if uc ==  'AVERAGES':
                 averages(user_rating_dict, books)
                 print()
                 continue
 
-            if user_choice.upper == 'quit':
+            if uc =='QUIT':
                 print('See your next time')
                 break
 
@@ -134,7 +135,7 @@ if __name__ == '__main__':
     # print(user_rating)
 
     average_res = averages(user_rating, books)
-    print(average_res)
+    # print(average_res)
 
     book_recommender(info, books, user_rating)
 
