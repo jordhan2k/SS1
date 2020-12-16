@@ -77,7 +77,6 @@ def averages(user_rating_dict: dict, books: list):
 
     for each in sorted_ave:
         print(each[1], ' ', each[0])
-    return sorted_ave
 
 
 
@@ -99,25 +98,27 @@ def book_recommender(info: list, books: list, user_rating_dict: dict):
                 'recommend: recommend books for a particular user',
                 'averages : ouput the average ratings of all books in the system',
                  'quit: exit the program', sep = '\n')
-            user_choice = input('next task? ')
+            user_choice = str(input('next task? '))
 
-            if user_choice.upper not in ['RECOMMEND', 'AVERAGES', 'QUIT']:
-                print(user_choice.upper)
-                print(user_choice.upper in ['RECOMMEND', 'AVERAGES', 'QUIT'])
+            # due to some problems with upper, user choice here can not be flexible
+            if user_choice not in ['recommend', 'averages', 'quit']:
                 print('Please re-input')
-
                 continue
-            if user_choice.upper == 'RECOMMEND':
+
+            if user_choice == 'recommend':
                 recommend()
                 print()
                 continue
-            if user_choice.upper == 'AVERAGES':
+
+            if user_choice == 'averages':
                 averages(user_rating_dict, books)
                 print()
                 continue
-            if user_choice.upper == 'QUIT':
+
+            if user_choice.upper == 'quit':
                 print('See your next time')
                 break
+
         except ValueError:
             print('Please re-input')
             continue
@@ -126,16 +127,16 @@ def book_recommender(info: list, books: list, user_rating_dict: dict):
 # Run the program HERE
 if __name__ == '__main__':
     info = load_info_from_file('ratings-small.txt')
-    print(info)
+    # print(info)
     books = get_books(info)
-    print(books)
+    # print(books)
     user_rating = get_user_ratings(info, books)
-    print(user_rating)
+    # print(user_rating)
 
     average_res = averages(user_rating, books)
     print(average_res)
 
-    # book_recommender(info, books, user_rating)
+    book_recommender(info, books, user_rating)
 
     # print('averages'.upper)
 
