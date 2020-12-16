@@ -60,6 +60,7 @@ def recommend(user_rating_dict: dict, books: list):
 
 
 
+# Function to get a list containing book title and its average rating
 def averages(user_rating_dict: dict, books: list):
     average_list = []
     ratings = user_rating_dict.values()
