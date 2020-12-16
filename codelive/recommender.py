@@ -1,4 +1,4 @@
-import os
+
 
 ######### BOOK RECOMMENDER ############
 ## Author: Hoang Tien Dung - 1801040037
@@ -21,6 +21,8 @@ def load_info_from_file(file_name: str):
 
 
 # Load all books from the given info list
+# input: info list loaded from file
+# output: a book list
 def get_books(info: list):
     if len(info) == 0:
         print('no info available')
@@ -34,43 +36,62 @@ def get_books(info: list):
 
 
 # Get a dictionary for users' ratings
+# input: info list , book list
+# output: a dictionary containing user names and their ratings for books
 def get_user_ratings(info: list, books: list):
     if len(info) != 0 and len(books) != 0:
-
-        init_ratings = [0] * len(books)
         user_rating_dict = {}
-
         # add users as keys to the rating_dict
         for item in info:
             if info.index(item) % 3 == 0:
-                user_rating_dict[item] = init_ratings
-
-
+                user_rating_dict[item] = [0] * len(books)
 
         # Updating user ratings
         for i in range(0, len(info)):
             if i % 3 == 0:                                              # index of user name
                 book_index = books.index(info[i+1])                     # get index of a book in books list
-                print(info[i], ' ', info[i+1], ' ', info[i+2])
                 user_rating_dict[info[i]][book_index] = int(info[i+2])
-                ## THE ABOVE CODES DON NOT WORK PROPERLY  ##
     return user_rating_dict
 
 
-def recommend(user_rating_dict: dict):
+def recommend(user_rating_dict: dict, books: list):
     username = str('user? ')
 
 
 
 
-def averages():
-    return None
+def averages(user_rating_dict: dict, books: list):
+    average_list = []
+    ratings = user_rating_dict.values()
+
+    for i in range(0,len(books)):
+        total_rate = 0
+        total_user = 0
+        for each in ratings:
+            if each[i] != 0:
+                total_user += 1
+                total_rate += each[i]
+        average_list.append([total_rate/total_user, books[i]])
+
+    sorted_ave = sorted(average_list, key= lambda item: item[0], reverse=True)
+
+    for each in sorted_ave:
+        print(each[1], ' ', each[0])
+    return sorted_ave
 
 
 
 
 
-def book_recommender():
+
+
+
+
+
+
+
+# Main function to run the program
+def book_recommender(info: list, books: list, user_rating_dict: dict):
     while True:
         try:
             print('Welcome to the CSC110 Book Recommnder . Type the word in the' ,
@@ -78,16 +99,21 @@ def book_recommender():
                 'recommend: recommend books for a particular user',
                 'averages : ouput the average ratings of all books in the system',
                  'quit: exit the program', sep = '\n')
-            user_choice = str(input('next task?'))
+            user_choice = input('next task? ')
 
             if user_choice.upper not in ['RECOMMEND', 'AVERAGES', 'QUIT']:
+                print(user_choice.upper)
+                print(user_choice.upper in ['RECOMMEND', 'AVERAGES', 'QUIT'])
                 print('Please re-input')
+
                 continue
             if user_choice.upper == 'RECOMMEND':
                 recommend()
+                print()
                 continue
             if user_choice.upper == 'AVERAGES':
-                averages()
+                averages(user_rating_dict, books)
+                print()
                 continue
             if user_choice.upper == 'QUIT':
                 print('See your next time')
@@ -97,32 +123,21 @@ def book_recommender():
             continue
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Run the program HERE
 if __name__ == '__main__':
-
-    ## KEEP THIS LINE ONLY ##
-    # book_recommender()
-    #########################
-
-
     info = load_info_from_file('ratings-small.txt')
     # print(info)
     books = get_books(info)
     # print(books)
     user_rating = get_user_ratings(info, books)
-    print(user_rating)
+    # print(user_rating)
+
+    # average_res = averages(user_rating, books)
+    # print(average_res)
+
+    # book_recommender(info, books, user_rating)
+
+    print('averages'.upper)
 
 
 
