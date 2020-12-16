@@ -15,7 +15,7 @@ def load_info_from_file(file_name: str):
         print('File not found')
     info = []
     for line in f:
-        info.append(line.strip('\n'))
+        info.append(line.rstrip())
     f.close()
     return info
 
@@ -29,7 +29,7 @@ def get_books(info: list):
         return
     books = []
     for item in info:
-        if info.index(item) % 3 == 1 and item not in books:
+        if info.index(item) % 3 == 1 and str(item) not in books:
             books.append(item)
     return books
 
@@ -126,18 +126,18 @@ def book_recommender(info: list, books: list, user_rating_dict: dict):
 # Run the program HERE
 if __name__ == '__main__':
     info = load_info_from_file('ratings-small.txt')
-    # print(info)
+    print(info)
     books = get_books(info)
-    # print(books)
+    print(books)
     user_rating = get_user_ratings(info, books)
-    # print(user_rating)
+    print(user_rating)
 
-    # average_res = averages(user_rating, books)
-    # print(average_res)
+    average_res = averages(user_rating, books)
+    print(average_res)
 
     # book_recommender(info, books, user_rating)
 
-    print('averages'.upper)
+    # print('averages'.upper)
 
 
 
