@@ -54,7 +54,7 @@ def get_user_ratings(info: list, books: list):
     return user_rating_dict
 
 
-def recommend(user_rating_dict: dict, books: list):
+def recommendations(user_rating_dict: dict, books: list):
     username = str('user? ')
 
 
@@ -108,7 +108,7 @@ def book_recommender(info: list, books: list, user_rating_dict: dict):
                 continue
 
             if uc == 'RECOMMEND':
-                recommend()
+                recommendations()
                 print()
                 continue
 
