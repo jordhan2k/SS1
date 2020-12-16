@@ -130,7 +130,7 @@ def book_recommender(info: list, books: list, user_rating_dict: dict):
 
 # Run the program HERE
 if __name__ == '__main__':
-    info = load_info_from_file('ratings-small.txt')
+    info = load_info_from_file('ratings.txt')
     # print(info)
     books = get_books(info)
     # print(books)
