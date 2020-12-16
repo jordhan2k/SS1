@@ -58,6 +58,8 @@ def recommendations(user_rating_dict: dict, books: list):
     username = str(input('user? '))
     if username not in user_rating.keys():
         averages(user_rating_dict, books)
+    else:
+        print('INCPMLETE :((')
 
 
 
@@ -80,17 +82,6 @@ def averages(user_rating_dict: dict, books: list):
 
     for each in sorted_ave:
         print(each[1], ' ', each[0])
-
-
-
-
-
-
-
-
-
-
-
 
 # Main function to run the program
 def book_recommender(info: list, books: list, user_rating_dict: dict):
