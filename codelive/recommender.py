@@ -59,7 +59,16 @@ def recommendations(user_rating_dict: dict, books: list):
     if username not in user_rating.keys():
         averages(user_rating_dict, books)
     else:
+        similarity_list = []
+        for each in user_rating_dict.keys():
+            similarity = 0
+            if each != username:
+                for i in range(0, len(books)):
+                    similarity += user_rating_dict[username][i] * user_rating_dict[each][i]
+            similarity_list.append([each, similarity])
+        print(similarity_list)
         print('INCPMLETE :((')
+        return similarity_list
 
 
 
