@@ -55,7 +55,9 @@ def get_user_ratings(info: list, books: list):
 
 
 def recommendations(user_rating_dict: dict, books: list):
-    username = str('user? ')
+    username = str(input('user? '))
+    if username not in user_rating.keys():
+        averages(user_rating_dict, books)
 
 
 
@@ -108,7 +110,7 @@ def book_recommender(info: list, books: list, user_rating_dict: dict):
                 continue
 
             if uc == 'RECOMMEND':
-                recommendations()
+                recommendations(user_rating_dict, books)
                 print()
                 continue
 
@@ -135,7 +137,7 @@ if __name__ == '__main__':
     user_rating = get_user_ratings(info, books)
     # print(user_rating)
 
-    average_res = averages(user_rating, books)
+    # average_res = averages(user_rating, books)
     # print(average_res)
 
     book_recommender(info, books, user_rating)
