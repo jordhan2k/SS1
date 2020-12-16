@@ -1,9 +1,13 @@
 import os
 
+######### BOOK RECOMMENDER ############
+## Author: Hoang Tien Dung - 1801040037
 
 
 
 # Load all information from  ratings file
+# input: the file name (a text file)
+# output: a list containg all information (e.g [username, book, rating, ...])
 def load_info_from_file(file_name: str):
     try:  # try opening a file
         f = open(file_name, 'r')
@@ -15,6 +19,7 @@ def load_info_from_file(file_name: str):
     f.close()
     return info
 
+
 # Load all books from the given info list
 def get_books(info: list):
     if len(info) == 0:
@@ -25,6 +30,8 @@ def get_books(info: list):
         if info.index(item) % 3 == 1 and item not in books:
             books.append(item)
     return books
+
+
 
 # Get a dictionary for users' ratings
 def get_user_ratings(info: list, books: list):
@@ -38,16 +45,57 @@ def get_user_ratings(info: list, books: list):
             if info.index(item) % 3 == 0:
                 user_rating_dict[item] = init_ratings
 
+
+
         # Updating user ratings
         for i in range(0, len(info)):
-            if i % 3 == 0:
-                book_index = books.index[info[i+1]]
-                user_rating_dict[info[i]][book_index] = info[i+2]
-
-
-
-
+            if i % 3 == 0:                                              # index of user name
+                book_index = books.index(info[i+1])                     # get index of a book in books list
+                user_rating_dict[info[i]][book_index] = int(info[i+2])
+                ## THE ABOVE CODES DON NOT WORK PROPERLY  ##
     return user_rating_dict
+
+
+def recommend(user_rating_dict: dict):
+    username = str('user? ')
+
+
+
+
+def averages():
+    return None
+
+
+
+
+
+def book_recommender():
+    while True:
+        try:
+            print('Welcome to the CSC110 Book Recommnder . Type the word in the' 
+                'left column to do the action on the right.'
+                'recommend: recommend books for a particular user'
+                'averages : ouput the average ratings of all books in the system'
+                 'quit: exit the program')
+            user_choice = str(input('next task?'))
+
+            if user_choice.upper not in ['RECOMMEND', 'AVERAGES', 'QUIT']:
+                print('Please re-input')
+                continue
+            if user_choice.upper == 'RECOMMEND':
+                recommend()
+                continue
+            if user_choice.upper == 'AVERAGES':
+                averages()
+                continue
+            if user_choice.upper == 'QUIT':
+                print('See your next time')
+                break
+        except ValueError:
+            print('Please re-input')
+            continue
+
+
 
 
 
@@ -67,10 +115,16 @@ def get_user_ratings(info: list, books: list):
 
 if __name__ == '__main__':
     info = load_info_from_file('ratings-small.txt')
+    print(info)
     books = get_books(info)
     print(books)
     user_rating = get_user_ratings(info, books)
     print(user_rating)
+
+
+
+    # print('sfdgfd'.upper())
+
 
 
 
